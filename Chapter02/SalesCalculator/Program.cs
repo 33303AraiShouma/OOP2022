@@ -15,7 +15,10 @@ namespace SalesCalculator {
             {
                 Console.WriteLine("{0}{1}", obj.Key, obj.Value);
             }
-        }
+            int date;
+            double num = 234.5;
+            date = (int)num;
+         }
     }
 }
 
