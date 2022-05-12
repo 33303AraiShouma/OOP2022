@@ -27,6 +27,7 @@ namespace Execise03 {
             }
             return dict;
         }
+
         //商品別売り上げ
         public Dictionary<string, int> GetPerProductSales()
         {
@@ -40,6 +41,7 @@ namespace Execise03 {
             }
             return dict;
         }
+
         public static IEnumerable<Sale> ReadSales(string filePath)
         {
             List<Sale> sales = new List<Sale>();
