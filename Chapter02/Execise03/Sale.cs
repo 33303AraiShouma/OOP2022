@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Execise03 {
     class Sale {
+
+        //店舗別
+        public string ShopName { get; set; }
         //商品カテゴリー
         public string ProductCategory { get; set; }
         //売上高
