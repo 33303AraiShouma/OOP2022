@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 namespace Exercise01 {
     class Program {
         static void Main(string[] args)   {
-            var ym
+            var ym = new YearMonth(2022, 5);
+
+            var check = ym.Is21Century;
+            var test = ym.AddOneMonth();
+
+            Console.WriteLine(ym);
         }
     }
 }

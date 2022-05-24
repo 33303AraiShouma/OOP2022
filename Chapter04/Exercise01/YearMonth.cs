@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Exercise01 {
-    class YearMonth {
+    public class YearMonth {
         //4.1.1
         public int Year { get; private set; }//読み取り専用
         public int Month { get; private set; }//読み取り専用
@@ -35,9 +35,8 @@ namespace Exercise01 {
         //4.1.4
         public override string ToString() {
             //return Year + "年" + Month + "月";
-            return $"{ Year} 年{ Month}月";
+            return $"{Year}年{Month}月";
             
             }
         }
     }
-}
