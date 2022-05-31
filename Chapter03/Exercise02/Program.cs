@@ -37,10 +37,10 @@ namespace Exercise02 {
             Console.WriteLine(count);
         }
 
-        private static void Exercise2_3(object names) {
+        private static void Exercise2_3(List<string> names) {
             throw new NotImplementedException();
         }
-        private static void Exercise2_4(object names) {
+        private static void Exercise2_4(List<string> names) {
             var selected = names.Where(s => s.StartsWith("B")).Select(s => new { s.Length, s });
         }
     }

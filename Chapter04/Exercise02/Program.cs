@@ -31,7 +31,13 @@ namespace Exercise02 {
             Console.WriteLine("-----");
 
             Exercise2_5(ymCollection);
-            Exercise2_6(ymCollection);
+            Console.WriteLine("-----");
+
+            Exercise2_6_1(ymCollection);
+            Console.WriteLine("-----");
+
+            Exercise2_6_2(ymCollection);
+
         }
 
        
@@ -71,8 +77,17 @@ namespace Exercise02 {
                 Console.WriteLine(ym);
             }
         }
-        private static void Exercise2_6(YearMonth[] ymCollection)  {
-            foreach (var ym in ymCollection.OrderByDescending(ym => ym.Year)) {
+        private static void Exercise2_6_1(YearMonth[] ymCollection)  {
+            //①月で昇順に出力　
+            foreach (var ym in ymCollection.OrderBy(ym => ym.Month)) {
+                Console.WriteLine(ym);
+            }
+        }
+        private static void Exercise2_6_2(YearMonth[] ymCollection)
+        {
+           //②偶数年のみ昇順に出力
+            foreach (var ym in ymCollection.Where(ym => ym.Year % 4 == 0 || ym.Year % 100 ==0 && ym.Year % 400 == 0).OrderBy(ym => ym.Year))
+            {
                 Console.WriteLine(ym);
             }
         }
