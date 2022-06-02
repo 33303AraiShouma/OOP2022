@@ -61,6 +61,9 @@ namespace Exercise01 {
         private static void Exercise1_5(int[] numbers)
         {
             //重複を排除し10より大きい数がいくつあるか
+            var result = numbers.Distinct();
+            var count = result.Count(n => n > 10);
+            Console.WriteLine(count);
         }
     }
 }
