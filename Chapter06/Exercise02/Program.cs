@@ -39,7 +39,12 @@ namespace Exercise02 {
             Console.WriteLine("-----");
 
             Exercise2_7(books);
+            Console.WriteLine("-----");
+
+            Exercise2_8(books);
         }
+
+        
 
         private static void Exercise2_1(List<Book> books){
             foreach (var item in books.Where(n => n.Title == "ワンダフル・C#ライフ"))    {
@@ -81,11 +86,23 @@ namespace Exercise02 {
                 Console.WriteLine(item.Title);
             }
         }
+
+        private static void Exercise2_8(List<Book> books)  {
+            foreach (var item in books.Select((s,index) => new { s,index}))  {
+                Console.WriteLine("{0}冊目：{1}",item.index + 1 ,item.s.Title);
+            }
+        }
+
+        //private static void Exercise2_8(List<Book> books){
+        //    foreach (var book in books){
+        //        Console.WriteLine("{0}冊目：{1}", books.IndexOf(book) + 1, book.Title);
+        //    }
+        //}
+
         class Book {
             public string Title { get; set; }
             public int Price { get; set; }
             public int Pages { get; set; }
-
         }
     }
 }
