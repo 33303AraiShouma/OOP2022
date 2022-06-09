@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample0603", "FormAppSample
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample0607", "FormAppSample\Sample0607\Sample0607.csproj", "{87FB80B2-48AD-4B81-AF4F-CFBE4802E003}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook", "FormAppSample\AddressBook\AddressBook.csproj", "{DB0FB6FA-9195-49BD-A1E2-C36EBE17A359}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +131,10 @@ Global
 		{87FB80B2-48AD-4B81-AF4F-CFBE4802E003}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87FB80B2-48AD-4B81-AF4F-CFBE4802E003}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87FB80B2-48AD-4B81-AF4F-CFBE4802E003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB0FB6FA-9195-49BD-A1E2-C36EBE17A359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB0FB6FA-9195-49BD-A1E2-C36EBE17A359}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB0FB6FA-9195-49BD-A1E2-C36EBE17A359}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB0FB6FA-9195-49BD-A1E2-C36EBE17A359}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -152,6 +158,7 @@ Global
 		{6B563A04-DF3D-419F-89FF-C276C6A5C9CB} = {D0DBA7D7-DF27-41FB-BA69-C5C0D2E4B1AB}
 		{C627FFE3-68DB-469A-B9B3-A07F7129A8E0} = {A5385BD8-FF52-4A65-AD31-32556DF2A6AB}
 		{87FB80B2-48AD-4B81-AF4F-CFBE4802E003} = {A5385BD8-FF52-4A65-AD31-32556DF2A6AB}
+		{DB0FB6FA-9195-49BD-A1E2-C36EBE17A359} = {A5385BD8-FF52-4A65-AD31-32556DF2A6AB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3BC0B94E-ACC7-4211-BE02-B16227537320}

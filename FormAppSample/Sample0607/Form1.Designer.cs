@@ -54,7 +54,11 @@ namespace Sample0607 {
             this.Number1.Name = "Number1";
             this.Number1.Size = new System.Drawing.Size(209, 71);
             this.Number1.TabIndex = 1;
-            
+            this.Number1.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
             // 
             // text
             // 
