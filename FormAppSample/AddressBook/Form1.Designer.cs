@@ -31,20 +31,23 @@ namespace AddressBook {
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbName = new System.Windows.Forms.TextBox();
+            this.tbAddress = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tbMailAddress = new System.Windows.Forms.TextBox();
+            this.tbCompany = new System.Windows.Forms.TextBox();
+            this.cbFamily = new System.Windows.Forms.CheckBox();
+            this.cbFriend = new System.Windows.Forms.CheckBox();
+            this.cbWork = new System.Windows.Forms.CheckBox();
+            this.cbOther = new System.Windows.Forms.CheckBox();
+            this.btAddPerson = new System.Windows.Forms.Button();
+            this.pbPicture = new System.Windows.Forms.PictureBox();
+            this.btPictureOpen = new System.Windows.Forms.Button();
+            this.btPictureClear = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.dgvPersons = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersons)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -88,30 +91,21 @@ namespace AddressBook {
             this.label4.Text = "グループ";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // textBox1
+            // tbName
             // 
-            this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox1.Location = new System.Drawing.Point(171, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(226, 31);
-            this.textBox1.TabIndex = 1;
+            this.tbName.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbName.Location = new System.Drawing.Point(171, 25);
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(226, 31);
+            this.tbName.TabIndex = 1;
             // 
-            // textBox2
+            // tbAddress
             // 
-            this.textBox2.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox2.Location = new System.Drawing.Point(171, 129);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(226, 44);
-            this.textBox2.TabIndex = 1;
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox3.Font = new System.Drawing.Font("MS UI Gothic", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox3.Location = new System.Drawing.Point(152, 295);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(492, 103);
-            this.textBox3.TabIndex = 1;
+            this.tbAddress.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbAddress.Location = new System.Drawing.Point(171, 129);
+            this.tbAddress.Name = "tbAddress";
+            this.tbAddress.Size = new System.Drawing.Size(226, 44);
+            this.tbAddress.TabIndex = 1;
             // 
             // label5
             // 
@@ -124,111 +118,134 @@ namespace AddressBook {
             this.label5.Text = "会社";
             this.label5.Click += new System.EventHandler(this.label4_Click);
             // 
-            // textBox4
+            // tbMailAddress
             // 
-            this.textBox4.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox4.Location = new System.Drawing.Point(171, 72);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(226, 31);
-            this.textBox4.TabIndex = 1;
+            this.tbMailAddress.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbMailAddress.Location = new System.Drawing.Point(171, 72);
+            this.tbMailAddress.Name = "tbMailAddress";
+            this.tbMailAddress.Size = new System.Drawing.Size(226, 31);
+            this.tbMailAddress.TabIndex = 1;
             // 
-            // textBox5
+            // tbCompany
             // 
-            this.textBox5.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox5.Location = new System.Drawing.Point(171, 192);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(226, 31);
-            this.textBox5.TabIndex = 1;
+            this.tbCompany.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbCompany.Location = new System.Drawing.Point(171, 192);
+            this.tbCompany.Name = "tbCompany";
+            this.tbCompany.Size = new System.Drawing.Size(226, 31);
+            this.tbCompany.TabIndex = 1;
             // 
-            // checkBox1
+            // cbFamily
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(197, 245);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(48, 16);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "家族";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.cbFamily.AutoSize = true;
+            this.cbFamily.Location = new System.Drawing.Point(197, 245);
+            this.cbFamily.Name = "cbFamily";
+            this.cbFamily.Size = new System.Drawing.Size(48, 16);
+            this.cbFamily.TabIndex = 2;
+            this.cbFamily.Text = "家族";
+            this.cbFamily.UseVisualStyleBackColor = true;
+            this.cbFamily.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // checkBox2
+            // cbFriend
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(251, 245);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(48, 16);
-            this.checkBox2.TabIndex = 2;
-            this.checkBox2.Text = "友人";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.cbFriend.AutoSize = true;
+            this.cbFriend.Location = new System.Drawing.Point(251, 245);
+            this.cbFriend.Name = "cbFriend";
+            this.cbFriend.Size = new System.Drawing.Size(48, 16);
+            this.cbFriend.TabIndex = 2;
+            this.cbFriend.Text = "友人";
+            this.cbFriend.UseVisualStyleBackColor = true;
+            this.cbFriend.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // checkBox3
+            // cbWork
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(305, 245);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(48, 16);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "仕事";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.cbWork.AutoSize = true;
+            this.cbWork.Location = new System.Drawing.Point(305, 245);
+            this.cbWork.Name = "cbWork";
+            this.cbWork.Size = new System.Drawing.Size(48, 16);
+            this.cbWork.TabIndex = 2;
+            this.cbWork.Text = "仕事";
+            this.cbWork.UseVisualStyleBackColor = true;
+            this.cbWork.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // checkBox4
+            // cbOther
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(359, 245);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(55, 16);
-            this.checkBox4.TabIndex = 2;
-            this.checkBox4.Text = "その他";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.cbOther.AutoSize = true;
+            this.cbOther.Location = new System.Drawing.Point(359, 245);
+            this.cbOther.Name = "cbOther";
+            this.cbOther.Size = new System.Drawing.Size(55, 16);
+            this.cbOther.TabIndex = 2;
+            this.cbOther.Text = "その他";
+            this.cbOther.UseVisualStyleBackColor = true;
+            this.cbOther.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // button1
+            // btAddPerson
             // 
-            this.button1.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(486, 235);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 49);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "追加";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btAddPerson.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btAddPerson.Location = new System.Drawing.Point(486, 235);
+            this.btAddPerson.Name = "btAddPerson";
+            this.btAddPerson.Size = new System.Drawing.Size(104, 49);
+            this.btAddPerson.TabIndex = 3;
+            this.btAddPerson.Text = "追加";
+            this.btAddPerson.UseVisualStyleBackColor = true;
+            this.btAddPerson.Click += new System.EventHandler(this.button1_Click);
             // 
-            // pictureBox1
+            // pbPicture
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(441, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(189, 184);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
+            this.pbPicture.Location = new System.Drawing.Point(441, 2);
+            this.pbPicture.Name = "pbPicture";
+            this.pbPicture.Size = new System.Drawing.Size(189, 184);
+            this.pbPicture.TabIndex = 4;
+            this.pbPicture.TabStop = false;
             // 
-            // button2
+            // btPictureOpen
             // 
-            this.button2.Location = new System.Drawing.Point(504, 192);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(86, 22);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "開く...";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btPictureOpen.Location = new System.Drawing.Point(466, 201);
+            this.btPictureOpen.Name = "btPictureOpen";
+            this.btPictureOpen.Size = new System.Drawing.Size(86, 22);
+            this.btPictureOpen.TabIndex = 5;
+            this.btPictureOpen.Text = "開く...";
+            this.btPictureOpen.UseVisualStyleBackColor = true;
+            // 
+            // btPictureClear
+            // 
+            this.btPictureClear.Location = new System.Drawing.Point(571, 201);
+            this.btPictureClear.Name = "btPictureClear";
+            this.btPictureClear.Size = new System.Drawing.Size(86, 22);
+            this.btPictureClear.TabIndex = 5;
+            this.btPictureClear.Text = "クリア";
+            this.btPictureClear.UseVisualStyleBackColor = true;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // dgvPersons
+            // 
+            this.dgvPersons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPersons.Location = new System.Drawing.Point(88, 288);
+            this.dgvPersons.Name = "dgvPersons";
+            this.dgvPersons.RowTemplate.Height = 21;
+            this.dgvPersons.Size = new System.Drawing.Size(569, 150);
+            this.dgvPersons.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.dgvPersons);
+            this.Controls.Add(this.btPictureClear);
+            this.Controls.Add(this.btPictureOpen);
+            this.Controls.Add(this.pbPicture);
+            this.Controls.Add(this.btAddPerson);
+            this.Controls.Add(this.cbOther);
+            this.Controls.Add(this.cbWork);
+            this.Controls.Add(this.cbFriend);
+            this.Controls.Add(this.cbFamily);
+            this.Controls.Add(this.tbMailAddress);
+            this.Controls.Add(this.tbCompany);
+            this.Controls.Add(this.tbAddress);
+            this.Controls.Add(this.tbName);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -237,7 +254,8 @@ namespace AddressBook {
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersons)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,19 +267,21 @@ namespace AddressBook {
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.TextBox tbAddress;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox tbMailAddress;
+        private System.Windows.Forms.TextBox tbCompany;
+        private System.Windows.Forms.CheckBox cbFamily;
+        private System.Windows.Forms.CheckBox cbFriend;
+        private System.Windows.Forms.CheckBox cbWork;
+        private System.Windows.Forms.CheckBox cbOther;
+        private System.Windows.Forms.Button btAddPerson;
+        private System.Windows.Forms.PictureBox pbPicture;
+        private System.Windows.Forms.Button btPictureOpen;
+        private System.Windows.Forms.Button btPictureClear;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.DataGridView dgvPersons;
     }
 }
 
