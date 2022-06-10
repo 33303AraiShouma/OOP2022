@@ -100,10 +100,11 @@ namespace AddressBook {
             // 
             // tbAddress
             // 
-            this.tbAddress.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbAddress.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tbAddress.Location = new System.Drawing.Point(171, 129);
+            this.tbAddress.Multiline = true;
             this.tbAddress.Name = "tbAddress";
-            this.tbAddress.Size = new System.Drawing.Size(226, 44);
+            this.tbAddress.Size = new System.Drawing.Size(226, 48);
             this.tbAddress.TabIndex = 1;
             // 
             // label5
@@ -220,10 +221,13 @@ namespace AddressBook {
             // 
             this.dgvPersons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPersons.Location = new System.Drawing.Point(88, 288);
+            this.dgvPersons.MultiSelect = false;
             this.dgvPersons.Name = "dgvPersons";
             this.dgvPersons.RowTemplate.Height = 21;
+            this.dgvPersons.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPersons.Size = new System.Drawing.Size(569, 150);
             this.dgvPersons.TabIndex = 6;
+            this.dgvPersons.Click += new System.EventHandler(this.dgvPersons_Click);
             // 
             // Form1
             // 
