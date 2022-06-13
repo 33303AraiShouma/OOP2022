@@ -29,8 +29,7 @@ namespace AddressBook {
 
         private void btAddPerson_Click(object sender, EventArgs e)
         {
-            Person newPerson = new Person
-            {
+            Person newPerson = new Person{
                 Name = tbName.Text,
                 MailAddress = tbMailAddress.Text,
                 Address = tbAddress.Text,
@@ -72,12 +71,13 @@ namespace AddressBook {
 
 
             //選択されているインデックスを取得
+            if (dgvPersons.CurrentRow == null) return;
             var indexRow = dgvPersons.CurrentRow.Index;
             tbName.Text = listPerson[indexRow].Name;
             tbMailAddress.Text = listPerson[indexRow].MailAddress;
             tbAddress.Text = listPerson[indexRow].Address;
             tbCompany.Text = listPerson[indexRow].Company;
-            allClear();
+            allClear();//グループチェックボックスをいったん初期化
             foreach (var group in listPerson[indexRow].listGroup)
             {
                 switch (group)
@@ -99,13 +99,26 @@ namespace AddressBook {
                 }
             }
         }
-
+        //グループのチェックボックスをオールクリア
         private void allClear()
         {
-            cbFamily.Checked = false;
-            cbFriend.Checked = false;
-            cbWork.Checked = false;
-            cbOther.Checked = false;
+            //cbFamily.Checked = false;
+            // cbFriend.Checked = false;
+            //cbWork.Checked = false;
+            // cbOther.Checked = false;
+            cbFamily.Checked =cbFriend.Checked =cbWork.Checked =cbOther.Checked =false;
+        }
+        //更新ボタンが押された時の処理
+        private void btUpdate_Click(object sender, EventArgs e)  {
+            var indexRow = dgvPersons.CurrentRow.Index;
+            listPerson[indexRow] = new Person {
+                Name = tbName.Text,
+                MailAddress = tbMailAddress.Text,
+                Address = tbAddress.Text,
+                Company = tbCompany.Text,
+                Picture = pbPicture.Image,
+                listGroup = getCheckBoxGroup(),
+            };
         }
     }
 }
