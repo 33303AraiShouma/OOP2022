@@ -133,6 +133,10 @@ namespace AddressBook {
             //dgvPersons.Rows.RemoveAt(indexRow);
             //dgvPersons.Refresh();
             listPerson.RemoveAt(dgvPersons.CurrentRow.Index);
+            if (listPerson.Count() == 0) {
+                btDelete.Enabled = false;
+                btUpdate.Enabled = false;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e) {
