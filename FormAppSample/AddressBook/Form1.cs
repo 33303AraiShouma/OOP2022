@@ -110,15 +110,35 @@ namespace AddressBook {
         }
         //更新ボタンが押された時の処理
         private void btUpdate_Click(object sender, EventArgs e)  {
-            var indexRow = dgvPersons.CurrentRow.Index;
-            listPerson[indexRow] = new Person {
-                Name = tbName.Text,
-                MailAddress = tbMailAddress.Text,
-                Address = tbAddress.Text,
-                Company = tbCompany.Text,
-                Picture = pbPicture.Image,
-                listGroup = getCheckBoxGroup(),
-            };
+           // var indexRow = dgvPersons.CurrentRow.Index;
+            //listPerson[indexRow] = new Person {
+               // Name = tbName.Text,
+               // MailAddress = tbMailAddress.Text,
+               // Address = tbAddress.Text,
+               // Company = tbCompany.Text,
+               // Picture = pbPicture.Image,
+               // listGroup = getCheckBoxGroup()
+
+                listPerson[dgvPersons.CurrentRow.Index].Name = tbName.Text;
+                listPerson[dgvPersons.CurrentRow.Index].MailAddress = tbMailAddress.Text;
+                listPerson[dgvPersons.CurrentRow.Index].Address = tbAddress.Text;
+                listPerson[dgvPersons.CurrentRow.Index].Picture= pbPicture.Image;
+                listPerson[dgvPersons.CurrentRow.Index].listGroup= getCheckBoxGroup();
+                dgvPersons.Refresh();
+            // };
+        }
+
+        private void btDelete_Click(object sender, EventArgs e){
+            // var indexRow = dgvPersons.CurrentRow.Index;
+            //dgvPersons.Rows.RemoveAt(indexRow);
+            //dgvPersons.Refresh();
+            listPerson.RemoveAt(dgvPersons.CurrentRow.Index);
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+            btUpdate.Enabled = false;
+            btDelete.Enabled = false;
+
         }
     }
 }
