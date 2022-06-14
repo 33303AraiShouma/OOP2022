@@ -7,13 +7,8 @@ namespace Test01 {
 
         // コンストラクタ
         public ScoreCounter(string filePath) {
-
-
-
-            
+            _score = ReadScore(filePath);
         }
-
-
         //メソッドの概要： 
         private static IEnumerable<Student> ReadScore(string filePath) {
             
