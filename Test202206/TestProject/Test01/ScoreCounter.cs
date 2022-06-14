@@ -11,24 +11,40 @@ namespace Test01 {
         }
         //メソッドの概要： 
         private static IEnumerable<Student> ReadScore(string filePath) {
-            
-
-
-
-
-
-
-            
+            List<Student> students = new List<Student>();
+            string[] lines = File.ReadAllLines(filePath);
+            foreach (string line in lines)
+            {
+                string[] items = line.Split(',');
+                Student student = new Student
+                {
+                    name = items[0],
+                    subject = items[1],
+                    Score = int.Parse(items[2])
+                };
+                students.Add(student);
+            }
+            return students;
         }
 
         //メソッドの概要： 
         public IDictionary<string, int> GetPerStudentScore() {
-
-
-
-
-
-            
+            var dict = new Dictionary<string, int>();
+            foreach (Student student in _score)
+            {
+                if (dict.ContainsKey(student.subject))
+                    dict[student.subject] += student.Score;
+                else
+                    dict[student.subject] = student.Score;
+            }
+            return dict;
         }
+
+
+
+
+
+
     }
+}
 }
