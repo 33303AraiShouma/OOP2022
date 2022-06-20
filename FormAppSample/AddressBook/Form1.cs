@@ -27,8 +27,11 @@ namespace AddressBook {
             pbPicture.Image = null;
         }
 
-        private void btAddPerson_Click(object sender, EventArgs e)
-        {
+        private void btAddPerson_Click(object sender, EventArgs e){
+            if (string.IsNullOrWhiteSpace(tbName.Text)) {
+                MessageBox.Show("氏名が入力されていません");
+                return;
+            }
             Person newPerson = new Person{
                 Name = tbName.Text,
                 MailAddress = tbMailAddress.Text,
@@ -39,6 +42,16 @@ namespace AddressBook {
 
             };
             listPerson.Add(newPerson);
+            dgvPersons.Rows[dgvPersons.RowCount -1].Selected = true;
+
+            if (listPerson.Count() > 0) {
+                btDelete.Enabled = true;
+                btUpdate.Enabled = true;
+            }
+            //コンボボックスに会社名を登録する（重複なし）
+            if (cbCompany.Items.Contains(cbCompany.Text)==false) {
+                cbCompany.Items.Add(cbCompany.Text);
+            }
         }
         //チェックボックスにセットされている値をリストとして取り出す
         private List<Person.GroupType> getCheckBoxGroup() {

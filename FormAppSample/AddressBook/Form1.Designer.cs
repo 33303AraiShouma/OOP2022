@@ -48,6 +48,7 @@ namespace AddressBook {
             this.dgvPersons = new System.Windows.Forms.DataGridView();
             this.btUpdate = new System.Windows.Forms.Button();
             this.btDelete = new System.Windows.Forms.Button();
+            this.cbCompany = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersons)).BeginInit();
             this.SuspendLayout();
@@ -197,7 +198,7 @@ namespace AddressBook {
             // 
             // btPictureOpen
             // 
-            this.btPictureOpen.Location = new System.Drawing.Point(466, 201);
+            this.btPictureOpen.Location = new System.Drawing.Point(571, 201);
             this.btPictureOpen.Name = "btPictureOpen";
             this.btPictureOpen.Size = new System.Drawing.Size(86, 22);
             this.btPictureOpen.TabIndex = 5;
@@ -207,7 +208,7 @@ namespace AddressBook {
             // 
             // btPictureClear
             // 
-            this.btPictureClear.Location = new System.Drawing.Point(571, 201);
+            this.btPictureClear.Location = new System.Drawing.Point(675, 199);
             this.btPictureClear.Name = "btPictureClear";
             this.btPictureClear.Size = new System.Drawing.Size(86, 22);
             this.btPictureClear.TabIndex = 5;
@@ -256,11 +257,20 @@ namespace AddressBook {
             this.btDelete.UseVisualStyleBackColor = true;
             this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
             // 
+            // cbCompany
+            // 
+            this.cbCompany.FormattingEnabled = true;
+            this.cbCompany.Location = new System.Drawing.Point(431, 199);
+            this.cbCompany.Name = "cbCompany";
+            this.cbCompany.Size = new System.Drawing.Size(121, 20);
+            this.cbCompany.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbCompany);
             this.Controls.Add(this.dgvPersons);
             this.Controls.Add(this.btPictureClear);
             this.Controls.Add(this.btPictureOpen);
@@ -314,6 +324,7 @@ namespace AddressBook {
         private System.Windows.Forms.DataGridView dgvPersons;
         private System.Windows.Forms.Button btUpdate;
         private System.Windows.Forms.Button btDelete;
+        private System.Windows.Forms.ComboBox cbCompany;
     }
 }
 
