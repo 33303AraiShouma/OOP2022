@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -43,13 +45,14 @@ namespace AddressBook {
             };
             listPerson.Add(newPerson);
             dgvPersons.Rows[dgvPersons.RowCount -1].Selected = true;
-
-            if (listPerson.Count() > 0) {
-                btDelete.Enabled = true;
-                btUpdate.Enabled = true;
-            }
+            EnableCheck();
+        }
+        private void setCbCompany(string item)
+        {
             //コンボボックスに会社名を登録する（重複なし）
-            if (cbCompany.Items.Contains(cbCompany.Text)==false) {
+            if (!cbCompany.Items.Contains(cbCompany.Text))
+            {
+                //まだ登録されていなければ登録
                 cbCompany.Items.Add(cbCompany.Text);
             }
         }
@@ -146,16 +149,67 @@ namespace AddressBook {
             //dgvPersons.Rows.RemoveAt(indexRow);
             //dgvPersons.Refresh();
             listPerson.RemoveAt(dgvPersons.CurrentRow.Index);
-            if (listPerson.Count() == 0) {
+                EnableCheck();
+        }
+
+        private void EnableCheck()
+        {
+            if (listPerson.Count() > 0) {
+                btDelete.Enabled = false;//削除ボタンをマスク
+                btUpdate.Enabled = false;//更新ボタン
+            }
+            else {
                 btDelete.Enabled = false;
                 btUpdate.Enabled = false;
             }
         }
+            private void Form1_Load(object sender, EventArgs e) {
+                EnableCheck();//マスク処理呼び出し
 
-        private void Form1_Load(object sender, EventArgs e) {
-            btUpdate.Enabled = false;
-            btDelete.Enabled = false;
+        }
+        //保存ボタンのイベントハンドラ
+        private void btSave_Click(object sender, EventArgs e){
+            if (sfdSaveDialog.ShowDialog()== DialogResult.OK) {
+                try
+                {
+                    //バイナリ形式でシリアル化
+                    var bf = new BinaryFormatter();
 
+                    using (FileStream fs = File.Open(sfdSaveDialog.FileName, FileMode.Create))
+                    {
+                        bf.Serialize(fs, listPerson);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+        private void btOpen_Click(object sender, EventArgs e)
+        {
+            if (ofdFileOpenDialog.ShowDialog()== DialogResult.OK) {
+                try
+                {
+                    var bf = new BinaryFormatter();
+                    using (FileStream fs = File.Open(ofdFileOpenDialog.FileName,FileMode.Open,FileAccess.Read))
+                    {
+                        //逆シリアル化して読み込む
+                        listPerson =(BindingList<Person>) bf.Deserialize(fs);
+                        dgvPersons.DataSource = null;
+                        dgvPersons.DataSource =listPerson;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                foreach (var item in listPerson.Select(p => p.Company))
+                {
+                    setCbCompany(item);
+                }
+                EnableCheck();
+            }
         }
     }
 }
