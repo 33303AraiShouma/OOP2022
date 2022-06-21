@@ -29,19 +29,22 @@ namespace AddressBook {
             pbPicture.Image = null;
         }
 
-        private void btAddPerson_Click(object sender, EventArgs e){
-            if (string.IsNullOrWhiteSpace(tbName.Text)) {
+        private void btAddPerson_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbName.Text))
+            {
                 MessageBox.Show("氏名が入力されていません");
                 return;
             }
-            Person newPerson = new Person{
+            Person newPerson = new Person
+            {
                 Name = tbName.Text,
                 MailAddress = tbMailAddress.Text,
                 Address = tbAddress.Text,
                 Company = tbCompany.Text,
                 Picture = pbPicture.Image,
                 listGroup = getCheckBoxGroup(),
-
+                Registration = dtDateTime.Value
             };
             listPerson.Add(newPerson);
             dgvPersons.Rows[dgvPersons.RowCount -1].Selected = true;
@@ -93,6 +96,7 @@ namespace AddressBook {
             tbMailAddress.Text = listPerson[indexRow].MailAddress;
             tbAddress.Text = listPerson[indexRow].Address;
             tbCompany.Text = listPerson[indexRow].Company;
+            dtDateTime.Value = listPerson[indexRow].Registration.Year > 1900 ? listPerson[indexRow].Registration : DateTime.Today;
             allClear();//グループチェックボックスをいったん初期化
             foreach (var group in listPerson[indexRow].listGroup)
             {
@@ -135,12 +139,13 @@ namespace AddressBook {
                // Picture = pbPicture.Image,
                // listGroup = getCheckBoxGroup()
 
-                listPerson[dgvPersons.CurrentRow.Index].Name = tbName.Text;
-                listPerson[dgvPersons.CurrentRow.Index].MailAddress = tbMailAddress.Text;
-                listPerson[dgvPersons.CurrentRow.Index].Address = tbAddress.Text;
-                listPerson[dgvPersons.CurrentRow.Index].Picture= pbPicture.Image;
-                listPerson[dgvPersons.CurrentRow.Index].listGroup= getCheckBoxGroup();
-                dgvPersons.Refresh();
+            listPerson[dgvPersons.CurrentRow.Index].Name = tbName.Text;
+            listPerson[dgvPersons.CurrentRow.Index].MailAddress = tbMailAddress.Text;
+            listPerson[dgvPersons.CurrentRow.Index].Address = tbAddress.Text;
+            listPerson[dgvPersons.CurrentRow.Index].Picture= pbPicture.Image;
+            listPerson[dgvPersons.CurrentRow.Index].listGroup= getCheckBoxGroup();
+            listPerson[dgvPersons.CurrentRow.Index].Registration= dtDateTime.Value;
+            dgvPersons.Refresh();
             // };
         }
 
