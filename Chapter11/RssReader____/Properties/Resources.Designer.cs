@@ -9,8 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace RssReader.Properties
-{
+namespace RssReader.Properties {
     /// <summary>
     ///   ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
     /// </summary>
@@ -21,8 +20,7 @@ namespace RssReader.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
+    internal class Resources {
 
         private static global::System.Resources.ResourceManager resourceMan;
 

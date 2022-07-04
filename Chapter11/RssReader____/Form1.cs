@@ -10,11 +10,9 @@ using System.Windows.Forms;
 using System.Net;
 using System.Xml.Linq;
 
-namespace RssReader
-{
-    public partial class Form1 : Form
-    {
-        IEnumerable<string> xTitle,xLink;
+namespace RssReader {
+    public partial class Form1 : Form {
+        IEnumerable<string> xTitle, xLink;
 
         public Form1()
         {
