@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,11 +13,11 @@ using System.Windows.Forms;
 namespace CarReportSystem {
     public partial class Form1 : Form {
 
-        BindingList<CarReport> list = new BindingList<CarReport>();
+        BindingList<CarReport> listCarReport = new BindingList<CarReport>();
         public Form1()
         {
             InitializeComponent();
-           
+            dgvCarReport.DataSource = listCarReport;
         }
         private void btPictureOpen_Click(object sender, EventArgs e)
         {
@@ -31,32 +33,143 @@ namespace CarReportSystem {
 
         private void btAdd_Click(object sender, EventArgs e)
         {
-            //氏名が未入力なら登録しない
-            if (String.IsNullOrWhiteSpace(DateTime.Text))
+           CarReport newCarreport = new CarReport
             {
-                MessageBox.Show("氏名が入力されていません");
-                return;
-            }
-
-           CarReport newPerson = new CarReport
-            {
-               DateTime = dtpDate.Value,
-                MailAddress = tbMailAddress.Text,
-                Address = tbAddress.Text,
-                Company = cbCompany.Text,
+                Date = dtpDate.Value,
+                Auther = cbName.Text,
+                Maker = getMaker(),
+                CarName = cbCarName.Text,
                 Picture = pbPicture.Image,
-                listGroup = GetCheckBoxGroup(),
-                Registration = dtpRegistDate.Value,
+                Report = tbReport.Text,               
             };
-            listPerson.Add(newPerson);
-            dgvPersons.Rows[dgvPersons.RowCount - 1].Selected = true;
+            listCarReport.Add(newCarreport);
+            EnabledCheck();
+            setCbCarName(cbCarName.Text);
+            setCbName(cbName.Text);
+        }
 
+        //コンポボックスに記録者を登録する
+        private void setCbName(String Auther) {
+
+            if (!cbName.Items.Contains(Auther))
+            {
+                //まだ登録されていなければ登録処理
+                cbName.Items.Add(Auther);
+            }
+        }
+        //コンポボックスに車名を登録する
+        private void setCbCarName(String CarName)
+        {
+
+            if (!cbCarName.Items.Contains(CarName))
+            {
+                //まだ登録されていなければ登録処理
+                cbName.Items.Add(CarName);
+            }
+        }
+
+        private void btRepair_Click(object sender, EventArgs e)
+        {
+            listCarReport[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
+            listCarReport[dgvCarReport.CurrentRow.Index].Auther = cbName.Text;
+            listCarReport[dgvCarReport.CurrentRow.Index].CarName =cbCarName.Text ;
+            listCarReport[dgvCarReport.CurrentRow.Index].Report = tbReport.Text;
+            listCarReport[dgvCarReport.CurrentRow.Index].Picture = pbPicture.Image;
+            listCarReport[dgvCarReport.CurrentRow.Index].Maker = getMaker();
+            dgvCarReport.Refresh(); //データグリッドビュー更新
+        }
+
+        private void btDelete2_Click(object sender, EventArgs e)
+        {
+            listCarReport.RemoveAt(dgvCarReport.CurrentRow.Index);
+            EnabledCheck();
+        }
+         private void EnabledCheck()
+        {
+          btRepair.Enabled = btDelete2.Enabled = listCarReport.Count() > 0 ? true : false;
+        }
+
+        private CarReport.MakerGroup getMaker() {
+            if (rbHonnda.Checked)
+            {
+                return CarReport.MakerGroup.ホンダ;
+            }
+            if (rbNissann.Checked)
+            {
+                return CarReport.MakerGroup.日産;
+            }
+            if (rbToyota.Checked)
+            {
+                return CarReport.MakerGroup.トヨタ;
+            }
+            if (rbSubaru.Checked)
+            {
+                return CarReport.MakerGroup.スバル;
+            }
+            if (rbAbroad.Checked)
+            {
+                return CarReport.MakerGroup.外国車;
+            }
+            else
+            {
+                return CarReport.MakerGroup.その他;
+            }
+        }
+
+        private void btSave_Click(object sender, EventArgs e)
+        {
+            if (sfdSaveDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    //バイナリ形式でシリアル化
+                    var bf = new BinaryFormatter();
+                    using (FileStream fs = File.Open(sfdSaveDialog.FileName, FileMode.Create))
+                    {
+                        bf.Serialize(fs,listCarReport);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void btOpen2_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    //バイナリ形式で逆シリアル化
+                    var bf = new BinaryFormatter();
+                    using (FileStream fs = File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+                    {
+                        //逆シリアル化して読み込む
+                        listCarReport = (BindingList<CarReport>)bf.Deserialize(fs);
+                        dgvCarReport.DataSource = null;
+                        dgvCarReport.DataSource = listCarReport;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                cbCarName.Items.Clear();    //コンボボックスのアイテム消去
+                cbName.Items.Clear();
+                //コンボボックスへ新規登録
+                foreach (var item in listCarReport.Select(x => x.CarName))
+                {
+                    setCbCarName(item); //存在する会社を登録
+                }
+                foreach (var item in listCarReport.Select(x => x.Auther))
+                {
+                    setCbName(item); //存在する会社を登録
+                }
+            }
             EnabledCheck(); //マスク処理呼び出し
-
-            setCbCompany(cbCompany.Text);
         }
     }
+}  
 
-       
-    }
-}
