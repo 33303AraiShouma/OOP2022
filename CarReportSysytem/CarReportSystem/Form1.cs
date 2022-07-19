@@ -9,9 +9,14 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
+
+        //設定情報保存
+        Settings setting = new Settings();
 
         BindingList<CarReport> listCarReport = new BindingList<CarReport>();
         public Form1()
@@ -64,7 +69,7 @@ namespace CarReportSystem {
             if (!cbCarName.Items.Contains(CarName))
             {
                 //まだ登録されていなければ登録処理
-                cbName.Items.Add(CarName);
+                cbCarName.Items.Add(CarName);
             }
         }
 
@@ -169,6 +174,38 @@ namespace CarReportSystem {
                 }
             }
             EnabledCheck(); //マスク処理呼び出し
+        }
+        private void btExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        private void ColorChange_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                BackColor = colorDialog1.Color;
+            }
+
+        }
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //設定ファイルをシリアル化
+            using (var writer = XmlWriter.Create("settings.xml"))
+            {
+                var serializer = new XmlSerializer(setting.GetType());
+                serializer.Serialize(writer,setting);
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //設定ファイルを逆シリアル化して背景の色を設定
+            using (var reader = XmlReader.Create("settings.xml"))
+            {
+                var serializer = new XmlSerializer(typeof(Settings));
+                setting = serializer.Deserialize(reader) as Settings;
+            }
+            EnabledCheck();
         }
     }
 }  
