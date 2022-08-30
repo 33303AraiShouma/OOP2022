@@ -16,7 +16,7 @@ namespace CarReportSystem {
     public partial class Form1 : Form {
 
         //設定情報保存
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstance();
 
         BindingList<CarReport> listCarReport = new BindingList<CarReport>();
         public Form1()
@@ -201,11 +201,20 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e)
         {
             //設定ファイルを逆シリアル化して背景の色を設定
-            using (var reader = XmlReader.Create("settings.xml"))
+            try
             {
-                var serializer = new XmlSerializer(typeof(Settings));
-                settings = serializer.Deserialize(reader) as Settings;
-                BackColor = Color.FromArgb(settings.MainFormColor);
+                using (var reader = XmlReader.Create("settings.xml"))
+                {
+                    var serializer = new XmlSerializer(typeof(Settings));
+                    settings = serializer.Deserialize(reader) as Settings;
+                    BackColor = Color.FromArgb(settings.MainFormColor);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+
             }
             EnabledCheck();
         }
