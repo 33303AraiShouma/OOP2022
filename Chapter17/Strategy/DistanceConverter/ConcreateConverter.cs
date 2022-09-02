@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DistanceConverter.Framework;
 
 namespace DistanceConverter {
     public class MeterConverter : ConverterBase {
@@ -38,7 +39,7 @@ namespace DistanceConverter {
         public override string UnitName { get { return "ヤード"; } }
     }
 public class MileConverter : ConverterBase {
-    public override bool IsMyUnit(string name
+    public override bool IsMyUnit(string name)
     {
         return name.ToLower() =="mile" || name == UnitName;
     }
