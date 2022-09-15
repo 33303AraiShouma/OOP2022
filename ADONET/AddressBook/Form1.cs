@@ -116,6 +116,7 @@ namespace AddressBook {
             newRow[3] = tbTel.Text;
             newRow[4] = tbMail.Text;
             newRow[5] = tbMemo.Text;
+            newRow[6] = ImageToByteArray(pbImage.Image);
             //データセットへ新しいレコードを追加
             infosys202233DataSet.AddressTable.Rows.Add(newRow);
             //データベース更新
