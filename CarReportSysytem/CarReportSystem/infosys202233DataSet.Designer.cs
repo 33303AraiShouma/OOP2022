@@ -493,8 +493,7 @@ namespace CarReportSystem {
                 this.columnCarName.MaxLength = 50;
                 this.columnReport.MaxLength = 2147483647;
                 this.columnid.AutoIncrement = true;
-                this.columnid.AutoIncrementSeed = -1;
-                this.columnid.AutoIncrementStep = -1;
+                this.columnid.AutoIncrementSeed = 1;
                 this.columnid.AllowDBNull = false;
                 this.columnid.ReadOnly = true;
                 this.columnid.Unique = true;
@@ -1013,7 +1012,7 @@ SELECT Author, Maker, CarName, Report, Image, Date, id FROM CarReportDB WHERE (i
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT Author, Maker, CarName, Report, Image, Date, id FROM CarReportDB WHERE (Au" +
+            this._commandCollection[1].CommandText = "SELECT Author, CarName, Date, Image, Maker, Report, id FROM CarReportDB WHERE (Au" +
                 "thor LIKE N\'%\' + @data + N\'%\')";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@data", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Author", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
