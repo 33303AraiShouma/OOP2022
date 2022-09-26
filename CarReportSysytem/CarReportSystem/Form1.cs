@@ -39,12 +39,12 @@ namespace CarReportSystem {
         private void btAdd_Click(object sender, EventArgs e)
         {
             DataRow newRow = infosys202233DataSet.CarReportDB.NewRow();
-            newRow[1] = dtpDate.Text;
-            newRow[2] = cbName.Text;
-            newRow[3] = getMaker();
-            newRow[4] = cbCarName.Text;
-            newRow[5] = tbReport.Text;
-            newRow[6] = ImageToByteArray(pbPicture.Image);
+            newRow[5] = dtpDate.Text;
+            newRow[0] = cbName.Text;
+            newRow[1] = getMaker();
+            newRow[2] = cbCarName.Text;
+            newRow[3] = tbReport.Text;
+            newRow[4] = ImageToByteArray(pbPicture.Image);
             //データセットへ新しいレコードを追加
             infosys202233DataSet.CarReportDB.Rows.Add(newRow);
             //データベース更新
@@ -74,12 +74,12 @@ namespace CarReportSystem {
         private void btRepair_Click(object sender, EventArgs e)
         {
             //更新
-            carReportDBDataGridView.CurrentRow.Cells[1].Value = dtpDate.Value;
-            carReportDBDataGridView.CurrentRow.Cells[2].Value = cbName.Text;
-            carReportDBDataGridView.CurrentRow.Cells[3].Value =getMaker();
-            carReportDBDataGridView.CurrentRow.Cells[4].Value = cbCarName;
-            carReportDBDataGridView.CurrentRow.Cells[5].Value = tbReport.Text;
-            carReportDBDataGridView.CurrentRow.Cells[6].Value = ImageToByteArray(pbPicture.Image);
+            carReportDBDataGridView.CurrentRow.Cells[5].Value = dtpDate.Value;
+            carReportDBDataGridView.CurrentRow.Cells[0].Value = cbName.Text;
+            carReportDBDataGridView.CurrentRow.Cells[1].Value =getMaker();
+            carReportDBDataGridView.CurrentRow.Cells[2].Value = cbCarName;
+            carReportDBDataGridView.CurrentRow.Cells[3].Value = tbReport.Text;
+            carReportDBDataGridView.CurrentRow.Cells[4].Value = ImageToByteArray(pbPicture.Image);
             //listCarReport[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
             //listCarReport[dgvCarReport.CurrentRow.Index].Auther = cbName.Text;
             //listCarReport[dgvCarReport.CurrentRow.Index].CarName =cbCarName.Text ;
