@@ -62,13 +62,6 @@ namespace CarReportSystem {
             this.接続ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.carReportDBDataGridView = new System.Windows.Forms.DataGridView();
-            this.cbName = new System.Windows.Forms.ComboBox();
-            this.btNameSearch = new System.Windows.Forms.Button();
-            this.tbNameSerchText = new System.Windows.Forms.TextBox();
-            this.carReportDBBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.infosys202233DataSet = new CarReportSystem.infosys202233DataSet();
-            this.carReportDBTableAdapter = new CarReportSystem.infosys202233DataSetTableAdapters.CarReportDBTableAdapter();
-            this.tableAdapterManager = new CarReportSystem.infosys202233DataSetTableAdapters.TableAdapterManager();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,6 +75,13 @@ namespace CarReportSystem {
             this.reportDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carReportDBBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.infosys202233DataSet = new CarReportSystem.infosys202233DataSet();
+            this.cbName = new System.Windows.Forms.ComboBox();
+            this.btNameSearch = new System.Windows.Forms.Button();
+            this.tbNameSerchText = new System.Windows.Forms.TextBox();
+            this.carReportDBTableAdapter = new CarReportSystem.infosys202233DataSetTableAdapters.CarReportDBTableAdapter();
+            this.tableAdapterManager = new CarReportSystem.infosys202233DataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReport)).BeginInit();
             this.menuStrip2.SuspendLayout();
@@ -402,56 +402,8 @@ namespace CarReportSystem {
             this.carReportDBDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.carReportDBDataGridView.Size = new System.Drawing.Size(597, 220);
             this.carReportDBDataGridView.TabIndex = 30;
-            this.carReportDBDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.carReportDBDataGridView_CellContentClick);
             this.carReportDBDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.carReportDBDataGridView_DataError);
             this.carReportDBDataGridView.Click += new System.EventHandler(this.carReportDBDataGridView_Click);
-            // 
-            // cbName
-            // 
-            this.cbName.FormattingEnabled = true;
-            this.cbName.Location = new System.Drawing.Point(108, 75);
-            this.cbName.Name = "cbName";
-            this.cbName.Size = new System.Drawing.Size(200, 20);
-            this.cbName.TabIndex = 1;
-            // 
-            // btNameSearch
-            // 
-            this.btNameSearch.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btNameSearch.Location = new System.Drawing.Point(15, 348);
-            this.btNameSearch.Name = "btNameSearch";
-            this.btNameSearch.Size = new System.Drawing.Size(87, 33);
-            this.btNameSearch.TabIndex = 31;
-            this.btNameSearch.Text = "名前検索";
-            this.btNameSearch.UseVisualStyleBackColor = true;
-            this.btNameSearch.Click += new System.EventHandler(this.btNameSearch_Click);
-            // 
-            // tbNameSerchText
-            // 
-            this.tbNameSerchText.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbNameSerchText.Location = new System.Drawing.Point(108, 350);
-            this.tbNameSerchText.Name = "tbNameSerchText";
-            this.tbNameSerchText.Size = new System.Drawing.Size(326, 31);
-            this.tbNameSerchText.TabIndex = 32;
-            // 
-            // carReportDBBindingSource
-            // 
-            this.carReportDBBindingSource.DataMember = "CarReportDB";
-            this.carReportDBBindingSource.DataSource = this.infosys202233DataSet;
-            // 
-            // infosys202233DataSet
-            // 
-            this.infosys202233DataSet.DataSetName = "infosys202233DataSet";
-            this.infosys202233DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // carReportDBTableAdapter
-            // 
-            this.carReportDBTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CarReportDBTableAdapter = this.carReportDBTableAdapter;
-            this.tableAdapterManager.UpdateOrder = CarReportSystem.infosys202233DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -531,6 +483,53 @@ namespace CarReportSystem {
             this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
             this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
             this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            // 
+            // carReportDBBindingSource
+            // 
+            this.carReportDBBindingSource.DataMember = "CarReportDB";
+            this.carReportDBBindingSource.DataSource = this.infosys202233DataSet;
+            // 
+            // infosys202233DataSet
+            // 
+            this.infosys202233DataSet.DataSetName = "infosys202233DataSet";
+            this.infosys202233DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // cbName
+            // 
+            this.cbName.FormattingEnabled = true;
+            this.cbName.Location = new System.Drawing.Point(108, 75);
+            this.cbName.Name = "cbName";
+            this.cbName.Size = new System.Drawing.Size(200, 20);
+            this.cbName.TabIndex = 1;
+            // 
+            // btNameSearch
+            // 
+            this.btNameSearch.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btNameSearch.Location = new System.Drawing.Point(15, 348);
+            this.btNameSearch.Name = "btNameSearch";
+            this.btNameSearch.Size = new System.Drawing.Size(87, 33);
+            this.btNameSearch.TabIndex = 31;
+            this.btNameSearch.Text = "名前検索";
+            this.btNameSearch.UseVisualStyleBackColor = true;
+            this.btNameSearch.Click += new System.EventHandler(this.btNameSearch_Click);
+            // 
+            // tbNameSerchText
+            // 
+            this.tbNameSerchText.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbNameSerchText.Location = new System.Drawing.Point(108, 350);
+            this.tbNameSerchText.Name = "tbNameSerchText";
+            this.tbNameSerchText.Size = new System.Drawing.Size(326, 31);
+            this.tbNameSerchText.TabIndex = 32;
+            // 
+            // carReportDBTableAdapter
+            // 
+            this.carReportDBTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CarReportDBTableAdapter = this.carReportDBTableAdapter;
+            this.tableAdapterManager.UpdateOrder = CarReportSystem.infosys202233DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // Form1
             // 

@@ -55,6 +55,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="infosys202233DataSet.cs">
+      <DependentUpon>infosys202233DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="infosys202233DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

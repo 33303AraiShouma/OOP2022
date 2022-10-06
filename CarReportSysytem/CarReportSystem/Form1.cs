@@ -310,11 +310,6 @@ namespace CarReportSystem {
         {
             this.carReportDBTableAdapter.SearchName(this.infosys202233DataSet.CarReportDB, tbNameSerchText.Text);
         }
-
-        private void carReportDBDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }  
 
