@@ -19,7 +19,8 @@ namespace Chapter15 {
                 year = int.Parse(Console.ReadLine());
             }
             var books = Library.Books
-                                     .Where(b => years.Contains(b.PublishedYear));
+                                .Where(b=>years.Contains(b.PublishedYear))
+                               .OrderByDescending(b => b.PublishedYear);
             Console.Write("昇順:1 降順:2  ");
             var number = int.Parse(Console.ReadLine());
             if (number ==1)
@@ -37,18 +38,23 @@ namespace Chapter15 {
             }
             Console.WriteLine(" ");
 
-            var groups = Library.Books
-                         .Where(b => years.Contains(b.PublishedYear))
-                         .GroupBy(b => b.PublishedYear)
-                         .OrderBy(g => g.Key);
-            foreach (var g in groups)
+            var selected =  Library.Books
+                         .Where(b=>years.Contains(b.PublishedYear))
+                         .Join(Library.Categories,//結合する2番目のシーケンス
+                         　　　book => book.CategoryId,//対象シーケンスの結合キー
+                         　　　category => category.Id,//２番目のシーケンスキー
+                         　　　(book, category) => new
+                         　　　{
+                             　　　Title = book.Title,
+                             　　　Category = category.Name,
+                             　　　PublishedYear = book.PublishedYear
+                         }
+                         ) ;
+            foreach (var g in selected.OrderByDescending(x=>x.PublishedYear).ThenBy(x=>x.Category))
             {
-                Console.WriteLine($"{g.Key}年");
-                foreach (var book in g)
-                {
-                    var category = Library.Categories.Where(b => b.Id == book.CategoryId).First();
-                    Console.WriteLine($"タイトル:{book.Title},価格:{book.Price},カテゴリ:{category.Name}");
-                }
+                Console.WriteLine($"{g.PublishedYear},{g.Title},{g.Category}");
+                //var category = Library.Categories.Where(b => b.Id == g.CategoryId).First();
+                //Console.WriteLine($"タイトル:{g.Title},価格:{g.Price},カテゴリ:{category.Name}");
             }
 
 
