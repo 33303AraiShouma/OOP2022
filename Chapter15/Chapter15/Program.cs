@@ -47,16 +47,17 @@ namespace Chapter15 {
                          　　　{
                              　　　Title = book.Title,
                              　　　Category = category.Name,
-                             　　　PublishedYear = book.PublishedYear
+                             　　　PublishedYear = book.PublishedYear,
+                                   price = book.Price,
                          }
-                         ) ;
+                         ).ToList() ;
             foreach (var g in selected.OrderByDescending(x=>x.PublishedYear).ThenBy(x=>x.Category))
             {
-                Console.WriteLine($"{g.PublishedYear},{g.Title},{g.Category}");
+                Console.WriteLine($"{g.PublishedYear},{g.Title},{g.Category},{g.price}");
                 //var category = Library.Categories.Where(b => b.Id == g.CategoryId).First();
                 //Console.WriteLine($"タイトル:{g.Title},価格:{g.Price},カテゴリ:{category.Name}");
             }
-
+            Console.WriteLine($"金額の合計{selected.Sum(b=>b.price)}円");
 
             /*while (true)
             {
