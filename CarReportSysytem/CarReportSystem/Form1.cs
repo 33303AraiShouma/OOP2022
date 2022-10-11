@@ -245,9 +245,9 @@ namespace CarReportSystem {
                 return;
             }
             //データグリッドビューの選択レコードを各テキストボックスへ設定
-            dtpDate.Text = carReportDBDataGridView.CurrentRow.Cells[1].Value.ToString();
-            cbName.Text = carReportDBDataGridView.CurrentRow.Cells[2].Value.ToString();
-            switch (carReportDBDataGridView.CurrentRow.Cells[3].Value )
+            dtpDate.Text = carReportDBDataGridView.CurrentRow.Cells[5].Value.ToString();
+            cbName.Text = carReportDBDataGridView.CurrentRow.Cells[0].Value.ToString();
+            switch (carReportDBDataGridView.CurrentRow.Cells[1].Value )
             {
                 case "トヨタ":
                     rbToyota.Checked = true;
@@ -271,11 +271,11 @@ namespace CarReportSystem {
                 default:
                     break;
             }
-            cbCarName.Text = carReportDBDataGridView.CurrentRow.Cells[4].Value.ToString();
-            tbReport.Text = carReportDBDataGridView.CurrentRow.Cells[5].Value.ToString();
-            if (!(carReportDBDataGridView.CurrentRow.Cells[6].Value is DBNull))
+            cbCarName.Text = carReportDBDataGridView.CurrentRow.Cells[2].Value.ToString();
+            tbReport.Text = carReportDBDataGridView.CurrentRow.Cells[3].Value.ToString();
+            if (!(carReportDBDataGridView.CurrentRow.Cells[4].Value is DBNull))
             {
-                pbPicture.Image = ByteArrayToImage((byte[])carReportDBDataGridView.CurrentRow.Cells[6].Value);
+                pbPicture.Image = ByteArrayToImage((byte[])carReportDBDataGridView.CurrentRow.Cells[4].Value);
             }
         }
 
