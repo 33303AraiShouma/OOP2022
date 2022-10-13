@@ -49,6 +49,8 @@ namespace CarReportSystem {
             infosys202233DataSet.CarReportDB.Rows.Add(newRow);
             //データベース更新
             this.carReportDBTableAdapter.Update(this.infosys202233DataSet.CarReportDB);
+            setCbCarName(cbCarName.Text);
+            setCbName(cbName.Text);
         }
 
         //コンポボックスに記録者を登録する
@@ -74,12 +76,12 @@ namespace CarReportSystem {
         private void btRepair_Click(object sender, EventArgs e)
         {
             //更新
-            carReportDBDataGridView.CurrentRow.Cells[5].Value = dtpDate.Value;
-            carReportDBDataGridView.CurrentRow.Cells[0].Value = cbName.Text;
-            carReportDBDataGridView.CurrentRow.Cells[1].Value =getMaker();
-            carReportDBDataGridView.CurrentRow.Cells[2].Value = cbCarName;
-            carReportDBDataGridView.CurrentRow.Cells[3].Value = tbReport.Text;
-            carReportDBDataGridView.CurrentRow.Cells[4].Value = ImageToByteArray(pbPicture.Image);
+            carReportDBDataGridView.CurrentRow.Cells[1].Value = dtpDate.Value;
+            carReportDBDataGridView.CurrentRow.Cells[2].Value = cbName.Text;
+            carReportDBDataGridView.CurrentRow.Cells[3].Value =getMaker();
+            carReportDBDataGridView.CurrentRow.Cells[4].Value = cbCarName.Text;
+            carReportDBDataGridView.CurrentRow.Cells[5].Value = tbReport.Text;
+            carReportDBDataGridView.CurrentRow.Cells[6].Value = ImageToByteArray(pbPicture.Image);
             //listCarReport[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
             //listCarReport[dgvCarReport.CurrentRow.Index].Auther = cbName.Text;
             //listCarReport[dgvCarReport.CurrentRow.Index].CarName =cbCarName.Text ;
@@ -245,9 +247,9 @@ namespace CarReportSystem {
                 return;
             }
             //データグリッドビューの選択レコードを各テキストボックスへ設定
-            dtpDate.Text = carReportDBDataGridView.CurrentRow.Cells[5].Value.ToString();
-            cbName.Text = carReportDBDataGridView.CurrentRow.Cells[0].Value.ToString();
-            switch (carReportDBDataGridView.CurrentRow.Cells[1].Value )
+            dtpDate.Text = carReportDBDataGridView.CurrentRow.Cells[1].Value.ToString();
+            cbName.Text = carReportDBDataGridView.CurrentRow.Cells[2].Value.ToString();
+            switch (carReportDBDataGridView.CurrentRow.Cells[3].Value )
             {
                 case "トヨタ":
                     rbToyota.Checked = true;
@@ -271,12 +273,14 @@ namespace CarReportSystem {
                 default:
                     break;
             }
-            cbCarName.Text = carReportDBDataGridView.CurrentRow.Cells[2].Value.ToString();
-            tbReport.Text = carReportDBDataGridView.CurrentRow.Cells[3].Value.ToString();
-            if (!(carReportDBDataGridView.CurrentRow.Cells[4].Value is DBNull))
+            cbCarName.Text = carReportDBDataGridView.CurrentRow.Cells[4].Value.ToString();
+            tbReport.Text = carReportDBDataGridView.CurrentRow.Cells[5].Value.ToString();
+            if (!(carReportDBDataGridView.CurrentRow.Cells[6].Value is DBNull))
             {
-                pbPicture.Image = ByteArrayToImage((byte[])carReportDBDataGridView.CurrentRow.Cells[4].Value);
+                pbPicture.Image = ByteArrayToImage((byte[])carReportDBDataGridView.CurrentRow.Cells[6].Value);
             }
+            setCbCarName(cbCarName.Text);
+            setCbName(cbName.Text);
         }
 
         // バイト配列をImageオブジェクトに変換
@@ -298,6 +302,7 @@ namespace CarReportSystem {
         private void 接続ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.carReportDBTableAdapter.Fill(this.infosys202233DataSet.CarReportDB);
+            
             EnabledCheck();
         }
 
@@ -309,6 +314,7 @@ namespace CarReportSystem {
         private void btNameSearch_Click(object sender, EventArgs e)
         {
             this.carReportDBTableAdapter.SearchName(this.infosys202233DataSet.CarReportDB, tbNameSerchText.Text);
+
         }
     }
 }  
