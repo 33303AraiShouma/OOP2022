@@ -44,13 +44,17 @@ namespace CarReportSystem {
             newRow[1] = getMaker();
             newRow[2] = cbCarName.Text;
             newRow[3] = tbReport.Text;
-            newRow[4] = ImageToByteArray(pbPicture.Image);
+            if (pbPicture.Image != null) {
+                newRow[4] = ImageToByteArray(pbPicture.Image);
+            }
+            
             //データセットへ新しいレコードを追加
             infosys202233DataSet.CarReportDB.Rows.Add(newRow);
             //データベース更新
             this.carReportDBTableAdapter.Update(this.infosys202233DataSet.CarReportDB);
             setCbCarName(cbCarName.Text);
             setCbName(cbName.Text);
+            EnabledCheck();
         }
 
         //コンポボックスに記録者を登録する
@@ -81,7 +85,11 @@ namespace CarReportSystem {
             carReportDBDataGridView.CurrentRow.Cells[3].Value =getMaker();
             carReportDBDataGridView.CurrentRow.Cells[4].Value = cbCarName.Text;
             carReportDBDataGridView.CurrentRow.Cells[5].Value = tbReport.Text;
-            carReportDBDataGridView.CurrentRow.Cells[6].Value = ImageToByteArray(pbPicture.Image);
+            if (pbPicture.Image != null)
+            {
+                carReportDBDataGridView.CurrentRow.Cells[6].Value = ImageToByteArray(pbPicture.Image);
+            }
+            
             //listCarReport[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
             //listCarReport[dgvCarReport.CurrentRow.Index].Auther = cbName.Text;
             //listCarReport[dgvCarReport.CurrentRow.Index].CarName =cbCarName.Text ;
