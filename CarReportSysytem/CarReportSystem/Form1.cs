@@ -89,7 +89,11 @@ namespace CarReportSystem {
             {
                 carReportDBDataGridView.CurrentRow.Cells[6].Value = ImageToByteArray(pbPicture.Image);
             }
-            
+            //データベース更新
+            this.Validate();
+            this.carReportDBBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202233DataSet);
+
             //listCarReport[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
             //listCarReport[dgvCarReport.CurrentRow.Index].Auther = cbName.Text;
             //listCarReport[dgvCarReport.CurrentRow.Index].CarName =cbCarName.Text ;
