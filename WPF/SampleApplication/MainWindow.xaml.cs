@@ -17,10 +17,39 @@ namespace SampleApplication {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
+    /// 
     public partial class MainWindow : Window {
         public MainWindow()
         {
             InitializeComponent();
+            seasonComboBox.SelectedIndex = setSeasonIndex(DateTime.Now.Month);
+        }
+
+        private int setSeasonIndex(int month) {
+            switch (month)
+            {
+                case 3:
+                case 4:
+                case 5:
+                    return 0;
+
+                case 6:
+                case 7:
+                case 8:
+                    return 1;
+
+                case 9:
+                case 10:
+                case 11:
+                    return 2;
+                case 12:
+                case 1:
+                case 2:
+                    return 3;
+                default:
+                    return 0;
+            }
+
         }
 
         private void checkBox_Checked(object sender, RoutedEventArgs e)
