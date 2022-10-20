@@ -287,6 +287,7 @@ namespace CarReportSystem {
             }
             cbCarName.Text = carReportDBDataGridView.CurrentRow.Cells[4].Value.ToString();
             tbReport.Text = carReportDBDataGridView.CurrentRow.Cells[5].Value.ToString();
+            pbPicture.Image=null;
             if (!(carReportDBDataGridView.CurrentRow.Cells[6].Value is DBNull))
             {
                 pbPicture.Image = ByteArrayToImage((byte[])carReportDBDataGridView.CurrentRow.Cells[6].Value);
