@@ -39,16 +39,30 @@ namespace CollarChecker {
 
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Border_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
             var color = mycolor.Color;
             var name = mycolor.Name;
+
+            colorArea.Background = new SolidColorBrush(Color.FromArgb(color.A,color.R,color.G,color.B));
+            rValue.Text = color.R.ToString();
+            gValue.Text = color.G.ToString();
+            bValue.Text = color.B.ToString();
         }
 
-        private void Border_Loaded(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
+            stockList.Items.Add(new SolidColorBrush(Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value)));
+        }
 
+        private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
         }
     }
 }

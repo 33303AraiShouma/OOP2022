@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CollarChecker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="500" FontSize="15" FontFamily="Segoe UI Light">
+        Title="MainWindow" Height="300" Width="700" FontSize="15" FontFamily="Segoe UI Light">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="246*"/>
-            <ColumnDefinition Width="37*"/>
-            <ColumnDefinition Width="209*"/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Label Name="colorArea" Grid.Row="0" Grid.Column="0" Background="AliceBlue" Margin="30"/>
 
-        <Grid Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2">
+        <Grid Grid.Column="1" Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -43,7 +43,7 @@
             <TextBlock Grid.Row="2" Grid.Column="0" Text="B" Margin="3,30,3,3" HorizontalAlignment="Right"/>
             <Slider x:Name="bSlider" Grid.Row="2" Grid.Column="1" Margin="3,30,3,3" ValueChanged="Slider_ValueChanged" Maximum="255" Minimum="0" IsSnapToTickEnabled="True"/>
             <TextBox x:Name="bValue" Grid.Row="2" Grid.Column="2" Margin="3,30,3,3" Text="{Binding Value,ElementName=bSlider, UpdateSourceTrigger=PropertyChanged}"/>
-            <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding}" SelectedValue="{Binding Color}" Margin="3,30,3,3" Height="24" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="155">
+            <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding}" SelectedValue="{Binding Color}" Margin="3,30,3,3" Height="24" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="155" SelectionChanged="ComboBox_SelectionChanged_1">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -57,12 +57,17 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-
         </Grid>
-
-
-
-
-
+        <Grid Grid.Column="2" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" Content="STOCK" FontSize="20" Margin="10,5" Click="Button_Click"/>
+            <ListBox x:Name="stockList" Grid.Row="1" SelectionChanged="stockList_SelectionChanged"/>
+        </Grid>
     </Grid>
 </Window>
