@@ -32,6 +32,9 @@ namespace CollarChecker {
         public class MyColor { 
             public Color Color { get; set; }
             public string Name { get; set; }
+            public override string ToString() {
+                return $"R:{Color.R} G:{Color.G} B:{Color.B}";
+            }
         }
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -58,11 +61,17 @@ namespace CollarChecker {
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            stockList.Items.Add(new SolidColorBrush(Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value)));
+            MyColor item = new MyColor
+            {
+                Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value)
+            };
+
+            stockList.Items.Add(item);
         }
 
-        private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e){
+         
+
         }
     }
 }
