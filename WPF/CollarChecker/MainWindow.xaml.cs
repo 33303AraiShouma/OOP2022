@@ -70,8 +70,14 @@ namespace CollarChecker {
         }
 
         private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e){
-         
 
+            if (stockList.SelectedItem !=null)
+            {
+                var select = (MyColor)stockList.SelectedItem;
+                rValue.Text = select.Color.R.ToString();
+                gValue.Text = select.Color.G.ToString();
+                bValue.Text = select.Color.B.ToString();
+            }
         }
     }
 }
