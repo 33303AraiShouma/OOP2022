@@ -66,8 +66,10 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Content="STOCK" FontSize="20" Margin="10,5" Click="Button_Click"/>
-            <ListBox x:Name="stockList" Grid.Row="1" SelectionChanged="stockList_SelectionChanged"/>
+            <Button Grid.Row="0" Content="STOCK" FontSize="20" Margin="0,5,114,5" Click="Button_Click"/>
+
+            <ListBox x:Name="stockList" SelectionChanged="stockList_SelectionChanged" Margin="0,40,0,0" Grid.RowSpan="2"/>
+            <Button Content="Delete" FontSize="20" Margin="117,5,0,0" VerticalAlignment="Top" Height="35" Click="Button_Click_1" RenderTransformOrigin="0.336,1.756"/>
         </Grid>
     </Grid>
 </Window>

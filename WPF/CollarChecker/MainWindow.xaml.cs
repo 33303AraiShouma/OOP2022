@@ -19,7 +19,10 @@ namespace CollarChecker {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
+
+        List<MyColor> colorList = new List<MyColor>();
         public MainWindow() {
+
             InitializeComponent();
             DataContext = GetColorList();
         }
@@ -29,7 +32,7 @@ namespace CollarChecker {
                 .Select(i => new MyColor() { Color = (Color)i.GetValue(null), Name = i.Name }).ToArray();
         }
 
-        public class MyColor { 
+        public class MyColor {
             public Color Color { get; set; }
             public string Name { get; set; }
             public override string ToString() {
@@ -38,7 +41,7 @@ namespace CollarChecker {
         }
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            colorArea.Background = new SolidColorBrush(Color.FromRgb((byte)rSlider.Value,(byte)gSlider.Value,(byte)bSlider.Value));
+            colorArea.Background = new SolidColorBrush(Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value));
 
         }
 
@@ -47,13 +50,21 @@ namespace CollarChecker {
 
         }
 
+        private void setColor() {
+            MyColor stColor = new MyColor();
+            var r = byte.Parse(rValue.Text);
+            var g = byte.Parse(gValue.Text);
+            var b = byte.Parse(bValue.Text);
+            stColor.Color =Color.FromRgb(r, g, b);
+        }
+
         private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
             var color = mycolor.Color;
             var name = mycolor.Name;
 
-            colorArea.Background = new SolidColorBrush(Color.FromArgb(color.A,color.R,color.G,color.B));
+            colorArea.Background = new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B));
             rValue.Text = color.R.ToString();
             gValue.Text = color.G.ToString();
             bValue.Text = color.B.ToString();
@@ -65,19 +76,30 @@ namespace CollarChecker {
             {
                 Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value)
             };
+            var colorName = ((IEnumerable<MyColor>)DataContext)
+                .Where(c => c.Color.R == item.Color.R &&
+                          c.Color.G == item.Color.G &&
+                          c.Color.B == item.Color.B
+                          ).FirstOrDefault();
+            stockList.Items.Insert(0, colorName?.Name ?? "R:" + rValue.Text + "G:" + gValue.Text +"B:" + bValue.Text);
+            colorList.Insert(0, item);
 
-            stockList.Items.Add(item);
         }
 
-        private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e){
+        private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (stockList.SelectedIndex == -1) return;
+            rSlider.Value = colorList[stockList.SelectedIndex].Color.R;
+            gSlider.Value = colorList[stockList.SelectedIndex].Color.G;
+            bSlider.Value = colorList[stockList.SelectedIndex].Color.B;
+            setColor();
+        }
 
-            if (stockList.SelectedItem !=null)
-            {
-                var select = (MyColor)stockList.SelectedItem;
-                rValue.Text = select.Color.R.ToString();
-                gValue.Text = select.Color.G.ToString();
-                bValue.Text = select.Color.B.ToString();
-            }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (stockList.SelectedIndex == -1) return;
+            colorList.RemoveAt(stockList.SelectedIndex);
+            stockList.Items.RemoveAt(stockList.SelectedIndex);
+
         }
     }
 }
