@@ -43,7 +43,7 @@
             <TextBlock Grid.Row="2" Grid.Column="0" Text="B" Margin="3,30,3,3" HorizontalAlignment="Right"/>
             <Slider x:Name="bSlider" Grid.Row="2" Grid.Column="1" Margin="3,30,3,3" ValueChanged="Slider_ValueChanged" Maximum="255" Minimum="0" IsSnapToTickEnabled="True"/>
             <TextBox x:Name="bValue" Grid.Row="2" Grid.Column="2" Margin="3,30,3,3" Text="{Binding Value,ElementName=bSlider, UpdateSourceTrigger=PropertyChanged}"/>
-            <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding}" SelectedValue="{Binding Color}" Margin="3,30,3,3" Height="24" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="155" SelectionChanged="ComboBox_SelectionChanged_1">
+            <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding}" SelectedValue="{Binding Color}" Margin="3,30,3,3" Height="24" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="140" SelectionChanged="ComboBox_SelectionChanged_1">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
