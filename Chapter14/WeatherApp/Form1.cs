@@ -13,40 +13,43 @@ using Newtonsoft.Json;
 
 namespace WeatherApp {
     public partial class Form1 : Form {
+
+        List<string> list = new List<string>();
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void btWeatherGet_Click(object sender, EventArgs e) {
-            var wc = new WebClient()
-            {
-                Encoding = Encoding.UTF8
-            };
-            var dString = wc.DownloadString("https://www.jma.go.jp/bosai/common/const/area.json");
-
-            var json = JsonConvert.DeserializeObject<Rootobject>(dString);
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            StreamReader sr = new StreamReader(@"areacode.csv",System.Text.Encoding.GetEncoding("shift_jis"));
+            StreamReader sr = new StreamReader(@"areacode.csv",Encoding.GetEncoding("shift_jis"));
             {
                 while (!sr.EndOfStream)
                 {
                     string line = sr.ReadLine();
-                    string[] values = line.Split(',');
-                    List<string> lists = new List<string>();
-                    lists.AddRange(values);
+                    list.Add(line);
                     
-                    foreach (var item in lists)
-                    {
-                        
-                        cbRegion.Items.Add(item);
-                    }
+                    
 
                 }
             }
+        }
+
+        private void cbRegion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var a = list[cbRegion.SelectedIndex];
+            string[] values = a.Split(',');
+            var value = values[1];
+            var wc = new WebClient()
+            {
+                Encoding = Encoding.UTF8
+            };
+            var dString = wc.DownloadString($"https://www.jma.go.jp/bosai/forecast/data/overview_forecast/{value}.json");
+
+            var json = JsonConvert.DeserializeObject<Rootobject>(dString);
+            tbWeatherInfo.Text = json.text;
+
         }
     }
  }
