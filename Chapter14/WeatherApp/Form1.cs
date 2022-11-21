@@ -30,6 +30,8 @@ namespace WeatherApp {
                 {
                     string line = sr.ReadLine();
                     list.Add(line);
+
+                    
                 }
             }
         }
@@ -60,7 +62,14 @@ namespace WeatherApp {
             var Tomorrow = Json[0].timeSeries[0].areas[0].weatherCodes[1];
             pbTomorrow.ImageLocation = $"https://www.jma.go.jp/bosai/forecast/img/{Tomorrow}.png";
             var DayAfterTomorrow = Json[0].timeSeries[0].areas[0].weatherCodes[2];
-            pbDayAfterTomorrow.ImageLocation = $"https://www.jma.go.jp/bosai/forecast/img/{DayAfterTomorrow}.png";
+            pbDayAfter.ImageLocation = $"https://www.jma.go.jp/bosai/forecast/img/{DayAfterTomorrow}.png";
+
+            tbMin.Text = Json[1].timeSeries[1].areas[0].tempsMin[0];
+            tbMax.Text = Json[1].timeSeries[1].areas[0].tempsMax[0];
+            tbTomorrowMax.Text = Json[1].timeSeries[1].areas[0].tempsMax[1];
+            tbTomorrowMin.Text = Json[1].timeSeries[1].areas[0].tempsMin[1];
+            tbDayAfterTomorrowMax.Text = Json[1].timeSeries[1].areas[0].tempsMax[2];
+            tbDayAfterTomorrowMin.Text = Json[1].timeSeries[1].areas[0].tempsMin[2];
 
         }
     }
