@@ -39,6 +39,12 @@ namespace WeatherApp {
         {
             try
             {
+
+
+
+
+
+
                 var a = list[cbRegion.SelectedIndex];
                 string[] values = a.Split(',');
                 var value = values[1];

@@ -234,6 +234,7 @@ namespace WeatherApp {
             // pbToday
             // 
             this.pbToday.BackColor = System.Drawing.Color.White;
+            this.pbToday.ErrorImage = null;
             this.pbToday.Location = new System.Drawing.Point(3, 125);
             this.pbToday.Name = "pbToday";
             this.pbToday.Size = new System.Drawing.Size(134, 83);
@@ -244,6 +245,7 @@ namespace WeatherApp {
             // pbTomorrow
             // 
             this.pbTomorrow.BackColor = System.Drawing.Color.White;
+            this.pbTomorrow.ErrorImage = null;
             this.pbTomorrow.Location = new System.Drawing.Point(306, 125);
             this.pbTomorrow.Name = "pbTomorrow";
             this.pbTomorrow.Size = new System.Drawing.Size(137, 83);
@@ -285,6 +287,7 @@ namespace WeatherApp {
             // pbDayAfter
             // 
             this.pbDayAfter.BackColor = System.Drawing.Color.White;
+            this.pbDayAfter.ErrorImage = null;
             this.pbDayAfter.Location = new System.Drawing.Point(610, 123);
             this.pbDayAfter.Name = "pbDayAfter";
             this.pbDayAfter.Size = new System.Drawing.Size(134, 83);
@@ -506,7 +509,7 @@ namespace WeatherApp {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImage = global::WeatherApp.Properties.Resources.ssssssssss;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(960, 566);
